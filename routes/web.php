@@ -19,39 +19,42 @@ use App\Http\Controllers\landingpage\ContactController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
 
 Route::post('/contact', [ContactController::class, 'sendmessage']);
 
 Route::middleware('guest')->group(function () {
-    Route::get('/auth', [LoginController::class, 'index'])->name('login');;
-    Route::post('/auth/login', [LoginController::class, 'login']);
+    Route::get('/', function () {
+        return view('home');
+    });
+    Route::get('login', [LoginController::class, 'index'])->name('login');;
+    Route::post('login', [LoginController::class, 'login']);
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/auth/logout', [LoginController::class, 'logout']);
-    Route::get('/admin', [DashboardController::class, 'index']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('auth/logout', [LoginController::class, 'logout']);
     
-    Route::get('/admin/users', [UserController::class, 'index']);
-    Route::get('/admin/user/create', [UserController::class, 'create']);
-    Route::post('/admin/user', [UserController::class, 'store']);
-    Route::get('/admin/user/{user:id}/edit', [UserController::class, 'edit']);
-    Route::put('/admin/user/{user:id}', [UserController::class, 'update']);
-    Route::delete('/admin/user/{user:id}', [UserController::class, 'destroy']);
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
-    Route::get('/admin/gallerycategories', [GalleryCategoryController::class, 'index']);
-    Route::post('/admin/gallerycategory', [GalleryCategoryController::class, 'store']);
-    Route::put('/admin/gallerycategory/{gallery_category:id}', [GalleryCategoryController::class, 'update']);
-    Route::delete('/admin/gallerycategory/{gallery_category:id}', [GalleryCategoryController::class, 'destroy']);
+    // Route::get('/admin', [DashboardController::class, 'index']);
+    
+    Route::get('user', [UserController::class, 'index'])->name('user');
+    Route::get('user/create', [UserController::class, 'create'])->name('create-user');
+    Route::post('user/store', [UserController::class, 'store'])->name('store-user');
+    Route::get('user/{user:id}/edit', [UserController::class, 'edit'])->name('edit-user');
+    Route::put('user/{user:id}', [UserController::class, 'update'])->name('update-user');
+    Route::delete('user/{user:id}', [UserController::class, 'destroy'])->name('destroy-user');
+    
+    Route::get('category', [GalleryCategoryController::class, 'index'])->name('category');
+    Route::post('category/store', [GalleryCategoryController::class, 'store'])->name('store-category');
+    Route::put('category/{gallery_category:id}', [GalleryCategoryController::class, 'update'])->name('update-category');
+    Route::delete('category/{gallery_category:id}', [GalleryCategoryController::class, 'destroy'])->name('destroy-category');
 
-    Route::get('/admin/galleries', [GalleryController::class, 'index']);
-    Route::get('/admin/gallery/create', [GalleryController::class, 'create']);
-    Route::post('/admin/gallery', [GalleryController::class, 'store']);
-    Route::get('/admin/gallery/{gallery:id}/edit', [GalleryController::class, 'edit']);
-    Route::put('/admin/gallery/{gallery:id}', [GalleryController::class, 'update']);
-    Route::delete('/admin/gallery/{gallery:id}', [GalleryController::class, 'destroy']);
+    Route::get('gallery', [GalleryController::class, 'index'])->name('gallery');
+    Route::get('gallery/create', [GalleryController::class, 'create'])->name('create-gallery');
+    Route::post('/admin/gallery', [GalleryController::class, 'store'])->name('store-gallery');
+    Route::get('/admin/gallery/{gallery:id}/edit', [GalleryController::class, 'edit'])->name('edit-gallery');
+    Route::put('/admin/gallery/{gallery:id}', [GalleryController::class, 'update'])->name('update-gallery');
+    Route::delete('/admin/gallery/{gallery:id}', [GalleryController::class, 'destroy'])->name('destroy-gallery');
 });
 
 // API

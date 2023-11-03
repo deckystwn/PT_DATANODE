@@ -12,14 +12,14 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('admin.users', [
+        return view('content.user.index', [
             'users'     => User::latest()->get(),
         ]);
     }
 
     public function create()
     {
-        return view('admin.user_create');
+        return view('content.user.create');
     }
 
     public function store(Request $request)
@@ -36,12 +36,12 @@ class UserController extends Controller
 
         User::create($data);
 
-        return back()->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
+        return redirect('user')->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
     }
 
     public function edit(User $user)
     {
-        return view('admin.user_edit', [
+        return view('content.user.edit', [
             'user'          => $user,
         ]);
     }
@@ -62,7 +62,7 @@ class UserController extends Controller
 
         User::where('id', $user->id)->update($data);
 
-        return back()->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
+        return redirect('user')->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
     }
 
     public function destroy(User $user)

@@ -11,7 +11,7 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        return view('admin.galleries', [
+        return view('content.gallery.index', [
             'galleries'     => Gallery::latest()->get(),
         ]);
     }

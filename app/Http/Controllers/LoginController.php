@@ -15,13 +15,21 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email'              => ['required', 'min:4', 'max:100'],
-            'password'           => ['required', 'min:4', 'max:255'],
+            'email'              => ['required', 'email'],
+            'password'           => ['required'],
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin');
+            
+            // if (Auth::user()->role_id == 1) {
+            //     return redirect()->intended('superadmin');
+            // }
+
+            // if (Auth::user()->role_id == 2) {
+            //     return redirect()->intended('admin');
+            // }
+            return redirect()->intended('dashboard');
         }
 
         return back()->withInput()->with('msg', '<div class="alert small alert-danger small" role="alert">Email atau Password Salah!</div>');
@@ -32,6 +40,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/auth');
+        return redirect('/login');
     }
 }

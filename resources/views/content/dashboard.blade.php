@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Beranda')
+
 @section('content')
     <div class="container-fluid">
         <!--  Row 1 -->
