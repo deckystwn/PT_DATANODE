@@ -7,12 +7,12 @@
         <div class="container-xl px-4 mt-n10">
             <div class="card mb-4">
                 <div class="card-header text-uppercase">
-                    <a href="/admin/galleries" class="me-2"><i class="fas fa-arrow-circle-left"></i></a>
+                    <a href="{{ route('gallery') }}" class="me-2"><i class="fas fa-arrow-circle-left"></i></a>
                     Perbarui Galeri
                 </div>
                 <div class="card-body">
                     {!! session('msg') !!}
-                    <form action="/admin/gallery/{{ $gallery->id }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('update-gallery', $gallery->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -30,16 +30,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2 mb-3">
-                                <img src="{{ $gallery->gambar ? '/storage/' . $gallery->gambar : '/assets/img/noimage.jpeg' }}"
-                                    class="img-thumbnail imagePreview" width="100px">
-                            </div>
-                            <div class="col-md-10 mb-3">
+                            <div class="col-md-12 mb-3">
+                                <div class="col-md-2 mb-3">
+                                    <img src="{{ asset('uploads/gallery/' . $gallery->gambar) }}"
+                                        class="img-thumbnail imagePreview" width="100px">
+                                </div>
                                 <div class="form-group">
                                     <label for="gambar">Gambar</label>
                                     <div class="input-group">
                                         <input type="file" name="gambar" id="gambar"
-                                            class="form-control @error('gambar') is-invalid @enderror"
+                                            class="form-control @error('gambar') is-invalid @enderror" accept="image/*"
                                             onchange="previewImage('gambar', 'imagePreview')">
                                         @error('gambar')
                                             <div class="invalid-feedback">
@@ -51,14 +51,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label for="deskripsi">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi" rows="5"
-                                class="form-control mt-1 @error('deskripsi') is-invalid @enderror">{{ old('deskripsi', $gallery->deskripsi) }}</textarea>
-                            @error('deskripsi')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <div class="col-md-12 mb-3">
+                                <label for="deskripsi">Deskripsi</label>
+                                <textarea name="deskripsi" id="deskripsi" rows="5"
+                                    class="form-control mt-1 @error('deskripsi') is-invalid @enderror">{{ old('deskripsi', $gallery->deskripsi) }}</textarea>
+                                @error('deskripsi')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row">
                             <div class="form-group mb-3">
@@ -91,7 +93,7 @@
     </div>
 @endsection
 
-@section('script')
+@push('script')
     <script>
         function previewImage(fieldId, previewClass) {
             const image = document.querySelector('#' +
@@ -106,4 +108,4 @@
             }
         }
     </script>
-@endsection
+@endpush

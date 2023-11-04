@@ -34,7 +34,7 @@
                                                 style="color: red">({{ $row->galleries->count() }})</label>
                                         </td>
                                         <td>
-                                            <form action="/admin/gallerycategory/{{ $row->id }}" method="post">
+                                            <form action="/category/{{ $row->id }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <a href="javascript:void(0)"
@@ -105,7 +105,7 @@
         $('.addGalleryCategory').on('click', function() {
             $('#galleryCategoryModalLabel').html('Kategori Galeri Baru');
             $('input[name=_method]').val('POST');
-            $('.modal form').prop('action', '/admin/gallerycategory');
+            $('.modal form').prop('action', '/category/store');
             $('.modal-footer button[type=submit]').html('Simpan');
             $('#id').val('');
             $('#name').val('');
@@ -115,7 +115,7 @@
             const id = $(this).data('id');
             $('input[name=_method]').val('PUT');
             $('#galleryCategoryModalLabel').html('Perbarui Kategori Galeri');
-            $('.modal form').prop('action', '/admin/gallerycategory/' + id);
+            $('.modal form').prop('action', '/category/' + id);
             $('.modal-footer button[type=submit]').html('Perbarui');
             $.ajax({
                 url: '/api/gallerycategory/' + id,

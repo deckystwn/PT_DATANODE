@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -19,22 +20,31 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('content.user.create');
+        $roles = Role::where('nama_role', '!=', 'superadmin')->pluck('nama_role', 'role_id');
+        return view('content.user.create', ['role' => $roles]);
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'name'      => ['required'],
-            'email'      => ['email:dns','unique:users'],
-            'password'      => ['required', 'min:4', 'max:255']
+            'email'      => ['required', 'email:dns','unique:users'],
+            'password'      => ['required', 'min:8'],
+            'confirm-password'      => ['required', 'same:password']
         ]);
 
-        $data['password'] = Hash::make($request->password);
-        $data['verified_at'] = now();
-        $data['remember_token'] = Str::random(60);
+        // $data['password'] = Hash::make($request->password);
+        // $data['verified_at'] = now();
+        // $data['remember_token'] = Str::random(60);
 
-        User::create($data);
+        // User::create($data);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->pasword);
+        $user->role_id = $request->role;
+        $user->save();
 
         return redirect('user')->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
     }

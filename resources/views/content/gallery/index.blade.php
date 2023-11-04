@@ -33,14 +33,14 @@
                                         <td>{{ $row->judul }}</td>
                                         <td>{{ $row->gallerycategory->name }}</td>
                                         <td>
-                                            <img src="{{ $row->gambar ? '/storage/' . $row->gambar : '' }}"
-                                                class="img-thumbnail" width="100px">
+                                            <img src="{{ asset('uploads/gallery/' . $row->gambar) }}" class="img-thumbnail"
+                                                width="100px">
                                         </td>
                                         <td>
-                                            <form action="/admin/gallery/{{ $row->id }}" method="post">
+                                            <form action="{{ route('destroy-gallery', $row->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="/admin/gallery/{{ $row->id }}/edit"
+                                                <a href="{{ route('edit-gallery', $row->id) }}"
                                                     class="btn btn-datatable btn-icon btn-primary"><i
                                                         class="fa-regular fa-pen-to-square"></i></a>
                                                 <button type="submit" class="btn btn-datatable btn-icon btn-danger"

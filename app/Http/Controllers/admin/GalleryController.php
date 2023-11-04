@@ -18,30 +18,38 @@ class GalleryController extends Controller
 
     public function create()
     {
-        return view('admin.gallery_create');
+        return view('content.gallery.create');
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'judul'         => ['required'],
-            'deskripsi'     => ['required'],
-            'gambar'        => ['required'],
-            'gallery_category_id'   => ['required']
+            'judul' => ['required'],
+            'deskripsi' => ['required'],
+            'gambar' => ['required', 'image', 'max:2048'],
+            'gallery_category_id' => ['required'],
         ]);
-        
-        if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->gambar->store('uploads');
-        }
-        
-        Gallery::create($data);
 
-        return back()->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
+        $filename_gambar = 'Gambar_' . uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
+
+        $request->file('gambar')->move('uploads/gallery', $filename_gambar);
+
+        $gallery = new Gallery([
+            'judul' => $data['judul'],
+            'deskripsi' => $data['deskripsi'],
+            'gambar' => $filename_gambar,
+            'gallery_category_id' => $data['gallery_category_id'],
+        ]);
+
+        $gallery->save();
+
+        return redirect('gallery')->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
     }
+
 
     public function edit(Gallery $gallery)
     {
-        return view('admin.gallery_edit', [
+        return view('content.gallery.edit', [
             'gallery'          => $gallery,
         ]);
     }
@@ -49,23 +57,35 @@ class GalleryController extends Controller
     public function update(Request $request, Gallery $gallery)
     {
         $data = $request->validate([
-            'judul'         => ['required'],
-            'deskripsi'     => ['required'],
-            'gambar'        => [''],
-            'gallery_category_id'   => ['required']
+            'judul' => ['required'],
+            'deskripsi' => ['required'],
+            'gallery_category_id' => ['required'],
         ]);
 
         if ($request->hasFile('gambar')) {
-            if ($gallery->gambar) {
-                Storage::delete($gallery->gambar);
-            }
-            $data['gambar'] = $request->gambar->store('uploads');
-        }
-        
-        Gallery::where('id', $gallery->id)->update($data);
+            $request->validate([
+                'gambar' => ['image', 'max:2048'],
+            ]);
 
-        return back()->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
+            $filename_gambar = 'Gambar_' . uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
+
+            $request->file('gambar')->move('uploads/gallery', $filename_gambar);
+
+            if ($gallery->gambar) {
+                if (file_exists('uploads/gallery/' . $gallery->gambar)) {
+                    unlink('uploads/gallery/' . $gallery->gambar);
+                }
+            }
+
+            $data['gambar'] = $filename_gambar;
+        }
+
+        $gallery->update($data);
+
+        return redirect('gallery')->with('msg', '<div class="alert alert-success small" role="alert">Berhasil diperbarui!</div>');
     }
+
+
 
     public function destroy(Gallery $gallery)
     {
