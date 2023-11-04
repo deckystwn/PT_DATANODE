@@ -25,6 +25,7 @@
                                         alt="">
                                 </a>
                                 <p class="text-center">Your Social Campaigns</p>
+                                {!! session('msg') !!}
                                 <form action="" method="POST">
                                     @csrf
                                     <div class="mb-3">

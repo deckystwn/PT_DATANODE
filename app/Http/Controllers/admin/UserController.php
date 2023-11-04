@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -28,7 +29,7 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'name'      => ['required'],
-            'email'      => ['required', 'email:dns','unique:users'],
+            'email'      => ['required', 'email:dns', 'unique:users'],
             'password'      => ['required', 'min:8'],
             'confirm-password'      => ['required', 'same:password']
         ]);
@@ -42,8 +43,10 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->pasword);
+        $user->password = Hash::make($request->password);
         $user->role_id = $request->role;
+        $user->remember_token = Str::random(60);
+        $user->email_verified_at = now();
         $user->save();
 
         return redirect('user')->with('msg', '<div class="alert alert-success small" role="alert">Berhasil disimpan!</div>');
@@ -67,7 +70,7 @@ class UserController extends Controller
         if ($request->password) {
             $data['password'] = Hash::make($request->password);
         }
-        
+
         $data['password'] = $request->password ? $data['password'] : $user->password;
 
         User::where('id', $user->id)->update($data);
