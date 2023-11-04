@@ -4,8 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login | Datanode</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/admin/images/logos/favicon.png') }}" />
+    <title>Login | PT. Datanode Naralogi Siberkarya</title>
+    <!-- Favicons -->
+    <link href="{{ asset('assets/img/logotittle.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/styles.min.css') }}" />
 </head>
 
@@ -21,10 +23,10 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="/" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('assets/admin/images/logos/dark-logo.svg') }}" width="180"
+                                    <img src="{{ asset('assets/img/menyamping_tanpa_pt.png') }}" width="180"
                                         alt="">
                                 </a>
-                                <p class="text-center">Your Social Campaigns</p>
+                                <p class="text-center">Login To Your Account</p>
                                 {!! session('msg') !!}
                                 <form action="" method="POST">
                                     @csrf
