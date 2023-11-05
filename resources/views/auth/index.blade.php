@@ -22,11 +22,11 @@
                     <div class="col-md-8 col-lg-6 col-xxl-3">
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="/" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('assets/img/menyamping_tanpa_pt.png') }}" width="180"
+                                <a href="/" class="text-nowrap logo-img text-center d-block w-100">
+                                    <img src="{{ asset('assets/img/fulllogo_transparent.png') }}" width="250"
                                         alt="">
                                 </a>
-                                <p class="text-center">Login To Your Account</p>
+                                {{-- <p class="text-center">Login To Your Account</p> --}}
                                 {!! session('msg') !!}
                                 <form action="" method="POST">
                                     @csrf
@@ -42,7 +42,7 @@
                                     {{-- <div class="d-flex align-items-center justify-content-between mb-4">
                     <a class="text-primary fw-bold" href="./index.html">Forgot Password ?</a>
                   </div> --}}
-                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign
+                                    <button type="submit" class="btn btn-success w-100 py-8 fs-4 mb-4 rounded-2">Sign
                                         In</button>
                                 </form>
                             </div>
