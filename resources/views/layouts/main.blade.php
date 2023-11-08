@@ -7,6 +7,7 @@
     <title>@yield('title') | PT. Datanode Naralogi Siberkarya</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/admin/images/logos/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/styles.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/main.css') }}" />
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <script data-search-pseudo-elements="" defer=""
         src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>

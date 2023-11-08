@@ -6,113 +6,89 @@
     <div class="container-fluid">
         <!--  Row 1 -->
         <div class="row">
-            <div class="col-lg-4 d-flex align-items-stretch">
+            <a class="col-lg-4 d-flex align-items-stretch cursor-pointer" href="{{ route('user') }}">
                 <div class="card w-100">
                     <div class="card-body p-4">
                         <h5 class="card-title mb-9 fw-semibold">Jumlah User</h5>
                         <div class="row align-items-center">
                             <div class="col-8">
                                 <h4 class="fw-semibold mb-3">{{ $jumlah_user }}</h4>
-                                <div class="d-flex align-items-center mb-3">
-                                    <span
-                                        class="me-1 rounded-circle bg-light-info round-20 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-arrow-right text-info"></i>
-                                    </span>
-                                    <p class="text-dark me-1 fs-3 mb-0">{{ $persentase_pertumbuhan }}%</p>
-                                    <p class="fs-3 mb-0">last month</p>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="me-4">
-                                        <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                                        <span class="fs-2">{{ $bulan_sekarang }}</span>
-                                    </div>
-                                    {{-- <div>
-                                        <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                                        <span class="fs-2">{{ $bulan_kemarin }}</span>
-                                    </div> --}}
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="d-flex justify-content-center">
-                                    <div id="breakup"></div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 d-flex align-items-stretch">
+            </a>
+            <a class="col-lg-4 d-flex align-items-stretch" href="{{ route('category') }}">
                 <div class="card w-100">
                     <div class="card-body p-4">
-                        <h5 class="card-title mb-9 fw-semibold">Jumlah User</h5>
+                        <h5 class="card-title mb-9 fw-semibold">Galeri Kategori</h5>
                         <div class="row alig n-items-start">
                             <div class="col-8">
-                                <h4 class="fw-semibold mb-3">{{ $jumlah_user }}</h4>
-                                <div class="d-flex align-items-center mb-3">
+                                <h4 class="fw-semibold mb-3">{{ $category }}</h4>
+                                {{-- <div class="d-flex align-items-center mb-3">
                                     <span
                                         class="me-1 rounded-circle bg-light-info round-20 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-arrow-right text-info"></i>
                                     </span>
                                     <p class="text-dark me-1 fs-3 mb-0">{{ $persentase_pertumbuhan }}%</p>
                                     <p class="fs-3 mb-0">last month</p>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="me-4">
+                                </div> --}}
+                                {{-- <div class="d-flex align-items-center"> --}}
+                                {{-- <div class="me-4">
                                         <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
                                         <span class="fs-2">{{ $bulan_sekarang }}</span>
                                     </div>
-                                    {{-- <div>
+                                    <div>
                                         <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
                                         <span class="fs-2">{{ $bulan_kemarin }}</span>
                                     </div> --}}
-                                </div>
+                                {{-- </div> --}}
                             </div>
-                            <div class="col-4">
+                            {{-- <div class="col-4">
                                 <div class="d-flex justify-content-center">
                                     <div id="breakup"></div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 d-flex align-items-stretch">
+            </a>
+            <a class="col-lg-4 d-flex align-items-stretch" href="{{ route('gallery') }}">
                 <div class="card w-100">
                     <div class="card-body p-4">
-                        <h5 class="card-title mb-9 fw-semibold">Jumlah User</h5>
+                        <h5 class="card-title mb-9 fw-semibold">Galeri</h5>
                         <div class="row alig n-items-start">
                             <div class="col-8">
-                                <h4 class="fw-semibold mb-3">{{ $jumlah_user }}</h4>
-                                <div class="d-flex align-items-center mb-3">
+                                <h4 class="fw-semibold mb-3">{{ $galery }}</h4>
+                                {{-- <div class="d-flex align-items-center mb-3">
                                     <span
                                         class="me-1 rounded-circle bg-light-info round-20 d-flex align-items-center justify-content-center">
                                         <i class="ti ti-arrow-right text-info"></i>
                                     </span>
                                     <p class="text-dark me-1 fs-3 mb-0">{{ $persentase_pertumbuhan }}%</p>
                                     <p class="fs-3 mb-0">last month</p>
-                                </div>
-                                <div class="d-flex align-items-center">
+                                </div> --}}
+                                {{-- <div class="d-flex align-items-center">
                                     <div class="me-4">
                                         <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
                                         <span class="fs-2">{{ $bulan_sekarang }}</span>
-                                    </div>
-                                    {{-- <div>
+                                    </div> --}}
+                                {{-- <div>
                                         <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
                                         <span class="fs-2">{{ $bulan_kemarin }}</span>
                                     </div> --}}
-                                </div>
+                                {{-- </div> --}}
                             </div>
-                            <div class="col-4">
+                            {{-- <div class="col-4">
                                 <div class="d-flex justify-content-center">
                                     <div id="breakup"></div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
-
 
         {{-- <div class="row">
             <div class="col-lg-4 d-flex align-items-stretch">
