@@ -56,13 +56,16 @@
                 </li>
                 <hr>
                 <li class="sidebar-item">
-                    <button class="btn btn-outline-primary w-100 p-2 mt-2" type="submit"
-                        onclick="return confirm('Yakin ingin melanjutkan?')" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-logout"></i>
-                        </span>
-                        <span class="hide-menu">Logout</span>
-                    </button>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-outline-primary w-100 p-2 mt-2" type="submit"
+                            onclick="return confirm('Yakin ingin melanjutkan?')" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-logout"></i>
+                            </span>
+                            <span class="hide-menu">Logout</span>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </nav>
