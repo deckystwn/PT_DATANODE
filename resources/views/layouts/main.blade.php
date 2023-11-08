@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') | PT. Datanode Naralogi Siberkarya</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/admin/images/logos/favicon.png') }}" />
+    <!-- Favicons -->
+    <link href="{{ asset('assets/img/logotittle.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/styles.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/main.css') }}" />
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
