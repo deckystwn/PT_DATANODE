@@ -22,15 +22,6 @@
                         <img src="{{ asset('assets/admin/images/profile/user-1.jpg') }}" alt="" width="35"
                             height="35" class="rounded-circle">
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                        <div class="message-body">
-                            <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <button type="submit" onclick="return confirm('Yakin ingin melanjutkan?')"
-                                    class="btn btn-outline-primary w-75 mx-3 mt-2 d-block">Logout</button>
-                            </form>
-                        </div>
-                    </div>
                 </li>
             </ul>
         </div>
